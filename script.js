@@ -319,7 +319,7 @@ function exportResults() {
     // Style dominant
     doc.setFontSize(16);
     doc.setFont(undefined, 'bold');
-    doc.text(`${styleInfo.emoji} ${styleInfo.name}`, pageWidth / 2, yPosition, { align: 'center' });
+    doc.text(`${styleInfo.name}`, pageWidth / 2, yPosition, { align: 'center' });
     yPosition += 10;
     
     // Sous-titre
