@@ -412,7 +412,6 @@ function exportResults() {
     const fileName = `profil-${styleInfo.name.toLowerCase().replace(/\s+/g, '-')}-${date.replace(/\//g, '-')}.pdf`;
     doc.save(fileName);
 }
-
 function resetSurvey() {
     // Réinitialiser le formulaire
     document.getElementById('surveyForm').reset();
