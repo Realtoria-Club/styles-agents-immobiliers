@@ -188,21 +188,6 @@ function showStyleResult(dominantStyle, scores) {
             <p>${styleInfo.advice}</p>
         </div>
         
-        <div class="result-scores">
-            <h3>Répartition de vos réponses</h3>
-            <div class="score-bars">
-                ${Object.entries(scores).map(([style, score]) => `
-                    <div class="score-item">
-                        <span class="score-label">${getStyleInfo(style).name}</span>
-                        <div class="score-bar">
-                            <div class="score-fill" style="width: ${(score/8)*100}%"></div>
-                        </div>
-                        <span class="score-value">${score}/8</span>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
-        
         <div class="result-actions">
             <button onclick="exportResults()">Télécharger mon profil</button>
             <button onclick="resetSurvey()">Refaire le test</button>
@@ -412,6 +397,7 @@ function exportResults() {
     const fileName = `profil-${styleInfo.name.toLowerCase().replace(/\s+/g, '-')}-${date.replace(/\//g, '-')}.pdf`;
     doc.save(fileName);
 }
+
 function resetSurvey() {
     // Réinitialiser le formulaire
     document.getElementById('surveyForm').reset();
