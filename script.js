@@ -1,54 +1,12 @@
 // Variables globales
 let currentSection = 1;
 const totalSections = 4;
-let surveyData = {};
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
-    setupEventListeners();
-    loadExistingResults();
+    updateNavigation();
 });
-
-function setupEventListeners() {
-    // Slider pour l'importance
-    const importanceRange = document.getElementById('importanceRange');
-    const ratingValue = document.getElementById('ratingValue');
-    
-    importanceRange.addEventListener('input', function() {
-        ratingValue.textContent = this.value;
-    });
-
-    // Limitation des checkboxes à 3 maximum
-    const checkboxes = document.querySelectorAll('input[name="priorities"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            const checked = document.querySelectorAll('input[name="priorities"]:checked');
-            const warning = document.querySelector('.checkbox-limit-warning') || createWarning();
-            
-            if (checked.length > 3) {
-                this.checked = false;
-                warning.style.display = 'block';
-                warning.textContent = 'Vous ne pouvez sélectionner que 3 priorités maximum.';
-            } else {
-                warning.style.display = 'none';
-            }
-        });
-    });
-
-    // Soumission du formulaire
-    document.getElementById('surveyForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        submitSurvey();
-    });
-}
-
-function createWarning() {
-    const warning = document.createElement('div');
-    warning.className = 'checkbox-limit-warning';
-    document.querySelector('.checkbox-group').appendChild(warning);
-    return warning;
-}
 
 function changeSection(direction) {
     const currentSectionElement = document.getElementById(`section${currentSection}`);
@@ -126,7 +84,7 @@ function updateProgress() {
 }
 
 function submitSurvey() {
-    console.log('submitSurvey called'); // Debug
+    console.log('submitSurvey called');
     
     // Collecter toutes les données du formulaire
     const formData = new FormData(document.getElementById('surveyForm'));
@@ -142,16 +100,16 @@ function submitSurvey() {
     // Compter les réponses pour chaque style
     const questions = ['prospection', 'mandats', 'organisation', 'valorisation', 'negociation', 'closing', 'resultats', 'force'];
     
-    console.log('Analyzing answers:'); // Debug
+    console.log('Analyzing answers:');
     questions.forEach(question => {
         const answer = formData.get(question);
-        console.log(`${question}: ${answer}`); // Debug
+        console.log(`${question}: ${answer}`);
         if (answer && scores.hasOwnProperty(answer)) {
             scores[answer]++;
         }
     });
     
-    console.log('Final scores:', scores); // Debug
+    console.log('Final scores:', scores);
     
     // Déterminer le style dominant
     let maxScore = 0;
@@ -164,7 +122,7 @@ function submitSurvey() {
         }
     }
     
-    console.log('Dominant style:', dominantStyle); // Debug
+    console.log('Dominant style:', dominantStyle);
     
     // Préparer les données pour sauvegarde
     const data = {
@@ -180,6 +138,7 @@ function submitSurvey() {
     // Afficher le résultat
     showStyleResult(dominantStyle, scores);
 }
+
 function showStyleResult(dominantStyle, scores) {
     // Cacher le formulaire
     document.getElementById('surveyForm').style.display = 'none';
@@ -241,7 +200,6 @@ function showStyleResult(dominantStyle, scores) {
         <div class="result-actions">
             <button onclick="exportResults()">Télécharger mon profil</button>
             <button onclick="resetSurvey()">Refaire le test</button>
-            <button onclick="viewAllResults()">Voir toutes les statistiques</button>
         </div>
     `;
     
@@ -339,136 +297,6 @@ function saveResponse(data) {
     localStorage.setItem('surveyResponses', JSON.stringify(responses));
 }
 
-function loadExistingResults() {
-    const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-    console.log(`${responses.length} réponses enregistrées`);
-}
-
-function viewResults() {
-    const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-    
-    if (responses.length === 0) {
-        alert('Aucune réponse enregistrée pour le moment.');
-        return;
-    }
-    
-    document.getElementById('results').style.display = 'none';
-    document.getElementById('resultsTable').style.display = 'block';
-    
-    generateStats(responses);
-}
-
-function generateStats(responses) {
-    const container = document.getElementById('statsContainer');
-    container.innerHTML = '';
-    
-    // Statistiques par âge
-    const ageStats = calculateStats(responses, 'age');
-    createStatsSection('Répartition par âge', ageStats, container);
-    
-    // Statistiques par expérience
-    const experienceStats = calculateStats(responses, 'experience');
-    createStatsSection('Répartition par expérience', experienceStats, container);
-    
-    // Statistiques par style préféré
-    const styleStats = calculateStats(responses, 'style');
-    createStatsSection('Styles d\'agents préférés', styleStats, container);
-    
-    // Statistiques par mode de communication
-    const commStats = calculateStats(responses, 'communication');
-    createStatsSection('Modes de communication préférés', commStats, container);
-    
-    // Importance moyenne
-    const avgImportance = responses.reduce((sum, r) => sum + parseInt(r.importance), 0) / responses.length;
-    const importanceDiv = document.createElement('div');
-    importanceDiv.className = 'stats-item';
-    importanceDiv.innerHTML = `
-        <h3>Importance moyenne du style d'agent</h3>
-        <p><strong>${avgImportance.toFixed(1)}/10</strong></p>
-    `;
-    container.appendChild(importanceDiv);
-    
-    // Nombre total de réponses
-    const totalDiv = document.createElement('div');
-    totalDiv.className = 'stats-item';
-    totalDiv.innerHTML = `
-        <h3>Nombre total de réponses</h3>
-        <p><strong>${responses.length}</strong> participant(s)</p>
-    `;
-    container.appendChild(totalDiv);
-}
-
-function calculateStats(responses, field) {
-    const counts = {};
-    responses.forEach(response => {
-        const value = response[field];
-        if (value) {
-            counts[value] = (counts[value] || 0) + 1;
-        }
-    });
-    
-    const total = responses.length;
-    const stats = {};
-    for (const key in counts) {
-        stats[key] = {
-            count: counts[key],
-            percentage: (counts[key] / total * 100).toFixed(1)
-        };
-    }
-    
-    return stats;
-}
-
-function createStatsSection(title, stats, container) {
-    const section = document.createElement('div');
-    section.className = 'stats-item';
-    
-    let html = `<h3>${title}</h3>`;
-    
-    for (const key in stats) {
-        const stat = stats[key];
-        html += `
-            <div style="margin: 10px 0;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <span>${formatLabel(key)}</span>
-                    <span><strong>${stat.count}</strong> (${stat.percentage}%)</span>
-                </div>
-                <div class="stats-bar">
-                    <div class="stats-fill" style="width: ${stat.percentage}%"></div>
-                </div>
-            </div>
-        `;
-    }
-    
-    section.innerHTML = html;
-    container.appendChild(section);
-}
-
-function formatLabel(key) {
-    const labels = {
-        'moins-25': 'Moins de 25 ans',
-        '26-35': '26-35 ans',
-        '36-45': '36-45 ans',
-        '46-55': '46-55 ans',
-        'plus-55': 'Plus de 55 ans',
-        'premiere-fois': 'Première expérience',
-        '2-3-fois': '2-3 transactions',
-        'plus-3': 'Plus de 3 transactions',
-        'professionnel': 'Professionnel',
-        'le-sniper': 'Le Sniper 🦅',
-        'l-observateur': 'L\'Observateur 🦉',
-        'le-constructeur': 'Le Constructeur 🐘',
-        'l-attentiste': 'L\'Attentiste 🐱',
-        'telephone': 'Téléphone',
-        'email': 'Email',
-        'sms': 'SMS/WhatsApp',
-        'video': 'Visioconférence',
-        'personne': 'En personne'
-    };
-    
-    return labels[key] || key;
-}
-
 function exportResults() {
     const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
     
@@ -478,19 +306,17 @@ function exportResults() {
     }
     
     // Créer le CSV
-    const headers = ['Timestamp', 'Age', 'Experience', 'Style', 'Priorities', 'Communication', 'Importance', 'Comments'];
+    const headers = ['Timestamp', 'Style Dominant', 'Score Sniper', 'Score Observateur', 'Score Constructeur', 'Score Attentiste'];
     let csv = headers.join(',') + '\n';
     
     responses.forEach(response => {
         const row = [
             response.timestamp,
-            response.age || '',
-            response.experience || '',
-            response.style || '',
-            response.priorities ? response.priorities.join(';') : '',
-            response.communication || '',
-            response.importance || '',
-            `"${(response.comments || '').replace(/"/g, '""')}"`
+            response.dominantStyle,
+            response.scores.sniper,
+            response.scores.observateur,
+            response.scores.constructeur,
+            response.scores.attentiste
         ];
         csv += row.join(',') + '\n';
     });
@@ -500,16 +326,11 @@ function exportResults() {
     const link = document.createElement('a');
     const url = URL.createObjectURL(blob);
     link.setAttribute('href', url);
-    link.setAttribute('download', `sondage-agents-immobiliers-${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `profil-agent-immobilier-${new Date().toISOString().split('T')[0]}.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-}
-
-function hideResults() {
-    document.getElementById('resultsTable').style.display = 'none';
-    document.getElementById('results').style.display = 'block';
 }
 
 function resetSurvey() {
@@ -525,28 +346,10 @@ function resetSurvey() {
     
     // Réinitialiser l'interface
     document.getElementById('results').style.display = 'none';
-    document.getElementById('resultsTable').style.display = 'none';
     document.getElementById('surveyForm').style.display = 'block';
     
     updateNavigation();
     updateProgress();
     
-    // Réinitialiser la valeur du slider
-    document.getElementById('ratingValue').textContent = '5';
-    
     window.scrollTo(0, 0);
-}
-
-// Fonction pour mettre à jour les styles d'agents (à appeler après avoir reçu les détails)
-function updateAgentStyles(styles) {
-    for (let i = 1; i <= 4; i++) {
-        const style = styles[i - 1];
-        if (style) {
-            const card = document.querySelector(`#style${i} + label`);
-            if (card) {
-                card.querySelector('h3').textContent = style.title;
-                card.querySelector('p').textContent = style.description;
-            }
-        }
-    }
 }
