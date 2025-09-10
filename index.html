@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondage - Styles d'Agents Immobiliers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sondage sur les Styles d'Agents Immobiliers</h1>
+            <p>Aidez-nous à mieux comprendre vos préférences en matière d'agents immobiliers</p>
+        </header>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <form id="surveyForm">
+            <!-- Section 1: Approche commerciale -->
+            <div class="section" id="section1">
+                <h2>Votre Approche Commerciale</h2>
+                
+                <div class="question-group">
+                    <label>Face à un nouveau secteur géographique, votre première action est :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="prospection" value="sniper"> Analyser les 5 meilleurs prospects et les cibler précisément</label>
+                        <label><input type="radio" name="prospection" value="observateur"> Étudier longuement le marché et les besoins avant d'agir</label>
+                        <label><input type="radio" name="prospection" value="constructeur"> Développer méthodiquement votre réseau local</label>
+                        <label><input type="radio" name="prospection" value="attentiste"> Observer les tendances sans vous presser d'agir</label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label>Votre stratégie de mandats privilégie :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="mandats" value="sniper"> Peu de mandats mais ultra-rentables et exclusifs</label>
+                        <label><input type="radio" name="mandats" value="observateur"> Des mandats où vous pouvez vraiment comprendre et aider</label>
+                        <label><input type="radio" name="mandats" value="constructeur"> Un volume stable et bien organisé</label>
+                        <label><input type="radio" name="mandats" value="attentiste"> Un bon portefeuille que vous analysez en détail</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Organisation et méthodes -->
+            <div class="section" id="section2" style="display: none;">
+                <h2>Votre Organisation</h2>
+                
+                <div class="question-group">
+                    <label>Votre journée type privilégie :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="organisation" value="sniper"> Peu d'actions mais ultra-ciblées et rentables</label>
+                        <label><input type="radio" name="organisation" value="observateur"> Écoute approfondie et analyse de chaque situation</label>
+                        <label><input type="radio" name="organisation" value="constructeur"> Planning structuré et méthode régulière</label>
+                        <label><input type="radio" name="organisation" value="attentiste"> Réflexion stratégique et analyse des tendances</label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label>Pour valoriser un bien, vous misez sur :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="valorisation" value="sniper"> Une analyse ultra-précise pour un prix optimal</label>
+                        <label><input type="radio" name="valorisation" value="observateur"> L'empathie et la compréhension des motivations</label>
+                        <label><input type="radio" name="valorisation" value="constructeur"> Une méthode éprouvée avec comparables solides</label>
+                        <label><input type="radio" name="valorisation" value="attentiste"> Une étude approfondie avant toute estimation</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Négociation et closing -->
+            <div class="section" id="section3" style="display: none;">
+                <h2>Votre Style de Négociation</h2>
+                
+                <div class="question-group">
+                    <label>En négociation, vous êtes plutôt :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="negociation" value="sniper"> Direct et efficace, vous allez droit au but</label>
+                        <label><input type="radio" name="negociation" value="observateur"> À l'écoute, vous cherchez le compromis gagnant-gagnant</label>
+                        <label><input type="radio" name="negociation" value="constructeur"> Méthodique, vous suivez un processus structuré</label>
+                        <label><input type="radio" name="negociation" value="attentiste"> Patient, vous attendez le bon moment pour agir</label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label>Pour conclure une vente, vous :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="closing" value="sniper"> Créez un sentiment d'urgence ciblé et précis</label>
+                        <label><input type="radio" name="closing" value="observateur"> Rassurez par l'empathie et la logique</label>
+                        <label><input type="radio" name="closing" value="constructeur"> Vous appuyez sur la relation de confiance établie</label>
+                        <label><input type="radio" name="closing" value="attentiste"> Laissez le client mûrir sa décision naturellement</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Résultats et performance -->
+            <div class="section" id="section4" style="display: none;">
+                <h2>Vos Résultats</h2>
+                
+                <div class="question-group">
+                    <label>Votre approche des résultats :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="resultats" value="sniper"> Peu de transactions mais très rentables</label>
+                        <label><input type="radio" name="resultats" value="observateur"> La satisfaction client prime sur le volume</label>
+                        <label><input type="radio" name="resultats" value="constructeur"> Régularité et stabilité des performances</label>
+                        <label><input type="radio" name="resultats" value="attentiste"> Qualité du portefeuille plus qu'efficacité immédiate</label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label>Votre principale force en tant qu'agent :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="force" value="sniper"> L'efficacité et la précision dans l'action</label>
+                        <label><input type="radio" name="force" value="observateur"> L'écoute et l'empathie avec les clients</label>
+                        <label><input type="radio" name="force" value="constructeur"> L'organisation et la méthode de travail</label>
+                        <label><input type="radio" name="force" value="attentiste"> L'analyse stratégique et la patience</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="navigation">
+                <button type="button" id="prevBtn" onclick="changeSection(-1)" style="display: none;">Précédent</button>
+                <button type="button" id="nextBtn" onclick="changeSection(1)">Suivant</button>
+                <button type="submit" id="submitBtn" style="display: none;">Terminer le sondage</button>
+            </div>
+        </form>
+
+        <!-- Résultats -->
+        <div id="results" style="display: none;">
+            <h2>Merci pour votre participation !</h2>
+            <p>Vos réponses ont été enregistrées avec succès.</p>
+            <button onclick="viewResults()">Voir les résultats agrégés</button>
+            <button onclick="exportResults()">Exporter les données</button>
+            <button onclick="resetSurvey()">Nouveau sondage</button>
+        </div>
+
+        <!-- Tableau des résultats -->
+        <div id="resultsTable" style="display: none;">
+            <h2>Résultats du Sondage</h2>
+            <div id="statsContainer"></div>
+            <button onclick="hideResults()">Retour</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
