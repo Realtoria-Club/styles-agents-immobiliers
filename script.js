@@ -6,6 +6,12 @@ const totalSections = 4;
 document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
     updateNavigation();
+    
+    // Event listener pour la soumission du formulaire
+    document.getElementById('surveyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitSurvey();
+    });
 });
 
 function changeSection(direction) {
