@@ -188,20 +188,20 @@ function showStyleResult(dominantStyle, scores) {
             <p>${styleInfo.advice}</p>
         </div>
         
-       <div class="result-scores">
-    <h3>Répartition de vos réponses</h3>
-    <div class="score-bars">
-        ${Object.entries(scores).map(([style, score]) => `
-            <div class="score-item">
-                <span class="score-label">${getStyleInfo(style).name}</span>
-                <div class="score-bar">
-                    <div class="score-fill" style="width: ${(score/8)*100}%"></div>
-                </div>
-                <span class="score-value">${score}/8</span>
+        <div class="result-scores">
+            <h3>Répartition de vos réponses</h3>
+            <div class="score-bars">
+                ${Object.entries(scores).map(([style, score]) => `
+                    <div class="score-item">
+                        <span class="score-label">${getStyleInfo(style).name}</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: ${(score/8)*100}%"></div>
+                        </div>
+                        <span class="score-value">${score}/8</span>
+                    </div>
+                `).join('')}
             </div>
-        `).join('')}
-    </div>
-</div>
+        </div>
         
         <div class="result-actions">
             <button onclick="exportResults()">Télécharger mon profil</button>
@@ -311,32 +311,106 @@ function exportResults() {
         return;
     }
     
-    // Créer le CSV
-    const headers = ['Timestamp', 'Style Dominant', 'Score Sniper', 'Score Observateur', 'Score Constructeur', 'Score Attentiste'];
-    let csv = headers.join(',') + '\n';
+    // Prendre la dernière réponse (la plus récente)
+    const lastResponse = responses[responses.length - 1];
+    const styleInfo = getStyleInfo(lastResponse.dominantStyle);
     
-    responses.forEach(response => {
-        const row = [
-            response.timestamp,
-            response.dominantStyle,
-            response.scores.sniper,
-            response.scores.observateur,
-            response.scores.constructeur,
-            response.scores.attentiste
-        ];
-        csv += row.join(',') + '\n';
+    // Créer le PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Configuration
+    const pageWidth = doc.internal.pageSize.width;
+    const margin = 20;
+    const lineHeight = 7;
+    let yPosition = 30;
+    
+    // Titre principal
+    doc.setFontSize(20);
+    doc.setFont(undefined, 'bold');
+    doc.text('Mon Profil d\'Agent Immobilier', pageWidth / 2, yPosition, { align: 'center' });
+    yPosition += 15;
+    
+    // Style dominant
+    doc.setFontSize(16);
+    doc.setFont(undefined, 'bold');
+    doc.text(`${styleInfo.emoji} ${styleInfo.name}`, pageWidth / 2, yPosition, { align: 'center' });
+    yPosition += 10;
+    
+    // Sous-titre
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'italic');
+    const subtitleLines = doc.splitTextToSize(styleInfo.subtitle, pageWidth - 2 * margin);
+    doc.text(subtitleLines, pageWidth / 2, yPosition, { align: 'center' });
+    yPosition += subtitleLines.length * lineHeight + 10;
+    
+    // Description
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'normal');
+    const descriptionLines = doc.splitTextToSize(styleInfo.description, pageWidth - 2 * margin);
+    doc.text(descriptionLines, margin, yPosition);
+    yPosition += descriptionLines.length * lineHeight + 15;
+    
+    // Forces principales
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.text('Vos Forces Principales', margin, yPosition);
+    yPosition += 10;
+    
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'normal');
+    styleInfo.strengths.forEach(strength => {
+        const strengthText = `✓ ${strength}`;
+        const strengthLines = doc.splitTextToSize(strengthText, pageWidth - 2 * margin - 10);
+        doc.text(strengthLines, margin + 5, yPosition);
+        yPosition += strengthLines.length * lineHeight + 2;
     });
+    yPosition += 10;
     
-    // Télécharger le fichier
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', `profil-agent-immobilier-${new Date().toISOString().split('T')[0]}.csv`);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Axes de progression
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.text('Axes de Progression', margin, yPosition);
+    yPosition += 10;
+    
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'normal');
+    styleInfo.areas.forEach(area => {
+        const areaText = `→ ${area}`;
+        const areaLines = doc.splitTextToSize(areaText, pageWidth - 2 * margin - 10);
+        doc.text(areaLines, margin + 5, yPosition);
+        yPosition += areaLines.length * lineHeight + 2;
+    });
+    yPosition += 10;
+    
+    // Citation
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'italic');
+    const quoteLines = doc.splitTextToSize(`"${styleInfo.quote}"`, pageWidth - 2 * margin);
+    doc.text(quoteLines, pageWidth / 2, yPosition, { align: 'center' });
+    yPosition += quoteLines.length * lineHeight + 15;
+    
+    // Conseil personnalisé
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.text('💡 Conseil Personnalisé', margin, yPosition);
+    yPosition += 10;
+    
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'normal');
+    const adviceLines = doc.splitTextToSize(styleInfo.advice, pageWidth - 2 * margin);
+    doc.text(adviceLines, margin, yPosition);
+    yPosition += adviceLines.length * lineHeight + 20;
+    
+    // Footer
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'italic');
+    const date = new Date().toLocaleDateString('fr-FR');
+    doc.text(`Profil généré le ${date}`, pageWidth / 2, doc.internal.pageSize.height - 20, { align: 'center' });
+    
+    // Télécharger le PDF
+    const fileName = `profil-${styleInfo.name.toLowerCase().replace(/\s+/g, '-')}-${date.replace(/\//g, '-')}.pdf`;
+    doc.save(fileName);
 }
 
 function resetSurvey() {
