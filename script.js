@@ -126,6 +126,8 @@ function updateProgress() {
 }
 
 function submitSurvey() {
+    console.log('submitSurvey called'); // Debug
+    
     // Collecter toutes les données du formulaire
     const formData = new FormData(document.getElementById('surveyForm'));
     
@@ -140,12 +142,16 @@ function submitSurvey() {
     // Compter les réponses pour chaque style
     const questions = ['prospection', 'mandats', 'organisation', 'valorisation', 'negociation', 'closing', 'resultats', 'force'];
     
+    console.log('Analyzing answers:'); // Debug
     questions.forEach(question => {
         const answer = formData.get(question);
+        console.log(`${question}: ${answer}`); // Debug
         if (answer && scores.hasOwnProperty(answer)) {
             scores[answer]++;
         }
     });
+    
+    console.log('Final scores:', scores); // Debug
     
     // Déterminer le style dominant
     let maxScore = 0;
@@ -157,6 +163,8 @@ function submitSurvey() {
             dominantStyle = style;
         }
     }
+    
+    console.log('Dominant style:', dominantStyle); // Debug
     
     // Préparer les données pour sauvegarde
     const data = {
@@ -172,7 +180,6 @@ function submitSurvey() {
     // Afficher le résultat
     showStyleResult(dominantStyle, scores);
 }
-
 function showStyleResult(dominantStyle, scores) {
     // Cacher le formulaire
     document.getElementById('surveyForm').style.display = 'none';
