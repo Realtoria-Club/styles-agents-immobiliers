@@ -1,0 +1,338 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.fiche-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Header Section */
+.fiche-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.agent-logo {
+    font-size: 4em;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid white;
+}
+
+.sniper-logo {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.observateur-logo {
+    background: linear-gradient(135deg, #8e44ad, #9b59b6);
+}
+
+.constructeur-logo {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+.attentiste-logo {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.title-section h1 {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #2c3e50;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 1.3em;
+    color: #e74c3c;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.icons-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.icon {
+    font-size: 2.5em;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+/* Resume Section */
+.resume-section {
+    padding: 40px;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.resume-section h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.agent-type {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.description {
+    font-size: 1.1em;
+    color: #7f8c8d;
+    line-height: 1.8;
+}
+
+/* Content Grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.points-forts, .axes-vigilance {
+    padding: 40px;
+}
+
+.points-forts {
+    border-right: 2px solid #ecf0f1;
+}
+
+.points-forts h2, .axes-vigilance h2 {
+    color: #2c3e50;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.points-forts ul, .axes-vigilance ul {
+    list-style: none;
+    padding: 0;
+}
+
+.points-forts li, .axes-vigilance li {
+    padding: 8px 0;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.points-forts li {
+    color: #27ae60;
+    font-weight: 500;
+}
+
+.axes-vigilance li {
+    color: #e67e22;
+    font-weight: 500;
+}
+
+/* Applications Métier */
+.applications-metier {
+    padding: 40px;
+    border-top: 2px solid #ecf0f1;
+}
+
+.applications-metier h2 {
+    color: #2c3e50;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.metier-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.metier-table tr {
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.metier-table tr:last-child {
+    border-bottom: none;
+}
+
+.metier-category {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    width: 150px;
+    vertical-align: top;
+    border-right: 2px solid #ecf0f1;
+}
+
+.metier-table td:last-child {
+    padding: 15px 20px;
+    color: #34495e;
+    line-height: 1.6;
+}
+
+/* Quote Section */
+.quote-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.quote-icon {
+    font-size: 2em;
+}
+
+.quote-text {
+    font-size: 1.3em;
+    font-style: italic;
+    font-weight: 300;
+    margin: 0;
+}
+
+.quote-author {
+    font-size: 1em;
+    opacity: 0.8;
+    margin: 0;
+    margin-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fiche-container {
+        margin: 10px;
+        border-radius: 10px;
+    }
+    
+    .fiche-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .agent-logo {
+        font-size: 3em;
+        width: 80px;
+        height: 80px;
+    }
+    
+    .title-section h1 {
+        font-size: 2.2em;
+    }
+    
+    .icons-section {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .icon {
+        font-size: 2em;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .points-forts {
+        border-right: none;
+        border-bottom: 2px solid #ecf0f1;
+    }
+    
+    .resume-section, .points-forts, .axes-vigilance, .applications-metier {
+        padding: 25px;
+    }
+    
+    .metier-category {
+        width: 120px;
+        font-size: 0.9em;
+    }
+    
+    .quote-section {
+        flex-direction: column;
+        gap: 10px;
+        padding: 25px;
+    }
+    
+    .quote-text {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-section h1 {
+        font-size: 1.8em;
+    }
+    
+    .subtitle {
+        font-size: 1.1em;
+    }
+    
+    .metier-table {
+        font-size: 0.9em;
+    }
+    
+    .metier-category {
+        width: 100px;
+        padding: 12px 15px;
+    }
+    
+    .metier-table td:last-child {
+        padding: 12px 15px;
+    }
+}

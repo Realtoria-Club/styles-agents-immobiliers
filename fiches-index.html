@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiches de Styles d'Agents Immobiliers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .fiches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .fiche-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .fiche-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .sniper-card .card-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .observateur-card .card-header {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+        }
+
+        .constructeur-card .card-header {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+        }
+
+        .attentiste-card .card-header {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .card-emoji {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-features li {
+            padding: 5px 0;
+            color: #27ae60;
+            font-weight: 500;
+        }
+
+        .card-features li:before {
+            content: "✓ ";
+            margin-right: 8px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .fiches-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card-header {
+                padding: 20px;
+            }
+
+            .card-emoji {
+                font-size: 3em;
+            }
+
+            .card-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Fiches de Styles d'Agents Immobiliers</h1>
+            <p>Découvrez les 4 profils d'agents et leurs caractéristiques détaillées</p>
+        </header>
+
+        <div class="fiches-grid">
+            <a href="fiche-sniper.html" class="fiche-card sniper-card">
+                <div class="card-header">
+                    <div class="card-emoji">🦅</div>
+                    <h2 class="card-title">LE SNIPER</h2>
+                    <p class="card-subtitle">Cible et conquiert</p>
+                </div>
+                <div class="card-content">
+                    <p class="card-description">
+                        Agent immobilier audacieux et déterminé qui excelle à identifier les opportunités avec précision.
+                    </p>
+                    <ul class="card-features">
+                        <li>Décisif et focalisé</li>
+                        <li>Sens du résultat</li>
+                        <li>Techniques de vente maîtrisées</li>
+                    </ul>
+                </div>
+            </a>
+
+            <a href="fiche-observateur.html" class="fiche-card observateur-card">
+                <div class="card-header">
+                    <div class="card-emoji">🦉</div>
+                    <h2 class="card-title">L'OBSERVATEUR</h2>
+                    <p class="card-subtitle">Écoute et comprend</p>
+                </div>
+                <div class="card-content">
+                    <p class="card-description">
+                        Agent immobilier empathique et réfléchi qui privilégie l'écoute et la compréhension client.
+                    </p>
+                    <ul class="card-features">
+                        <li>Écoute exceptionnelle</li>
+                        <li>Empathie naturelle</li>
+                        <li>Analyse approfondie</li>
+                    </ul>
+                </div>
+            </a>
+
+            <a href="fiche-constructeur.html" class="fiche-card constructeur-card">
+                <div class="card-header">
+                    <div class="card-emoji">🐘</div>
+                    <h2 class="card-title">LE CONSTRUCTEUR</h2>
+                    <p class="card-subtitle">Bâtit et structure</p>
+                </div>
+                <div class="card-content">
+                    <p class="card-description">
+                        Agent immobilier méthodique et organisé qui mise sur la stabilité et les résultats durables.
+                    </p>
+                    <ul class="card-features">
+                        <li>Organisation exemplaire</li>
+                        <li>Méthode éprouvée</li>
+                        <li>Relations durables</li>
+                    </ul>
+                </div>
+            </a>
+
+            <a href="fiche-attentiste.html" class="fiche-card attentiste-card">
+                <div class="card-header">
+                    <div class="card-emoji">🐱</div>
+                    <h2 class="card-title">L'ATTENTISTE</h2>
+                    <p class="card-subtitle">Observe et patiente</p>
+                </div>
+                <div class="card-content">
+                    <p class="card-description">
+                        Agent immobilier stratégique et patient qui excelle dans l'analyse et les relations de confiance.
+                    </p>
+                    <ul class="card-features">
+                        <li>Analyse stratégique</li>
+                        <li>Patience et persévérance</li>
+                        <li>Relations de confiance</li>
+                    </ul>
+                </div>
+            </a>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-button">← Retour au sondage</a>
+        </div>
+
+        <footer class="footer">
+            <p>Système de sondage - Styles d'Agents Immobiliers</p>
+        </footer>
+    </div>
+</body>
+</html>
