@@ -147,7 +147,13 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" onerror="console.error('Erreur de chargement jsPDF')"></script>
+    <script>
+        // Vérification que jsPDF est chargé
+        if (typeof window.jspdf === 'undefined') {
+            console.warn('jsPDF non disponible - export PDF désactivé');
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
