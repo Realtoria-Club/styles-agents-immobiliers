@@ -1,32 +1,35 @@
 # Système de Sondage - Styles d'Agents Immobiliers
 
+## 🌐 Visualisation en ligne
+**Accédez directement au sondage :** [https://realtoria-club.github.io/styles-agents-immobiliers/](https://realtoria-club.github.io/styles-agents-immobiliers/)
+
 ## Description
 Système de sondage autonome pour analyser les préférences des clients concernant les différents styles d'agents immobiliers. Interface web moderne et responsive avec stockage local des données et fiches de style détaillées.
 
 ## Fonctionnalités
 
-### 🎯 Sondage Interactif
+### Sondage Interactif
 - Interface multi-étapes avec barre de progression
 - Validation des réponses en temps réel
 - Design moderne et responsive
 - Animation fluide entre les sections
 - 4 sections complètes d'analyse comportementale
 
-### 📋 Fiches de Style Détaillées
+### Fiches de Style Détaillées
 - **4 fiches professionnelles** pour chaque profil d'agent
 - **Design cohérent** avec couleurs spécifiques par style
 - **Navigation intuitive** entre les fiches
 - **Format professionnel** adapté à la formation et au coaching
 - **Accès direct** depuis le sondage principal
 
-### 📊 Analyse des Données
+### Analyse des Données
 - Calcul automatique du style dominant
 - Génération de profils personnalisés avec conseils
 - Export PDF des résultats individuels
 - Stockage local automatique des réponses
 - Visualisation des scores par style
 
-### 💾 Gestion des Données
+### Gestion des Données
 - Export des résultats en format PDF
 - Sauvegarde automatique dans le navigateur
 - Possibilité de réinitialiser le sondage
@@ -51,25 +54,25 @@ Sondage-Agents-Immobiliers/
 
 ## Les 4 Styles d'Agents
 
-### 🦅 Le Sniper - "Cible et conquiert"
+### Le Sniper - "Cible et conquiert"
 - **Couleur** : Rouge
 - **Profil** : Agent audacieux et déterminé
 - **Forces** : Décisif, focalisé, sens du résultat
 - **Applications** : Prospection ciblée, mandats qualifiés
 
-### 🦉 L'Observateur - "Écoute et comprend"
+### L'Observateur - "Écoute et comprend"
 - **Couleur** : Violet
 - **Profil** : Agent empathique et réfléchi
 - **Forces** : Écoute exceptionnelle, empathie naturelle
 - **Applications** : Analyse approfondie, relation client
 
-### 🐘 Le Constructeur - "Bâtit et structure"
+### Le Constructeur - "Bâtit et structure"
 - **Couleur** : Gris foncé
 - **Profil** : Agent méthodique et organisé
 - **Forces** : Organisation exemplaire, méthode éprouvée
 - **Applications** : Planning structuré, relations durables
 
-### 🐱 L'Attentiste - "Observe et patiente"
+### L'Attentiste - "Observe et patiente"
 - **Couleur** : Orange
 - **Profil** : Agent stratégique et patient
 - **Forces** : Analyse stratégique, patience et persévérance
@@ -80,7 +83,7 @@ Sondage-Agents-Immobiliers/
 ### Démarrage
 1. Ouvrir `index.html` dans un navigateur web
 2. Le sondage se lance automatiquement
-3. Accéder aux fiches via le bouton "📋 Voir les fiches détaillées"
+3. Accéder aux fiches via le bouton " Voir les fiches détaillées"
 
 ### Navigation
 - **Sondage principal** : Navigation entre 4 sections d'analyse
