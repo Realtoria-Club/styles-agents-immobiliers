@@ -22,12 +22,28 @@ body {
 
 /* Header Section */
 .fiche-header {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     color: white;
     padding: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Couleurs spécifiques par style */
+.sniper-page .fiche-header {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.observateur-page .fiche-header {
+    background: linear-gradient(135deg, #8e44ad, #9b59b6);
+}
+
+.constructeur-page .fiche-header {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+.attentiste-page .fiche-header {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
 }
 
 .logo-section {
@@ -67,7 +83,7 @@ body {
     font-size: 3em;
     font-weight: 700;
     margin-bottom: 5px;
-    color: #2c3e50;
+    color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
